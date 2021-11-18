@@ -53,6 +53,31 @@ img{
     color: white;
 }
 
+/* Circles */
+.circle-container{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.circle-container ul{
+    display: flex;
+    list-style-type: none;
+}
+
+.circle-container ul li{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    margin: 0 5px;
+    background-color: grey;
+}
+
+.circle-container ul li.active{
+    background-color: white;
+}
+
 /* Thumb Img Container */
 .thumb-img-container{
     width: 20%;
