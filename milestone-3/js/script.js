@@ -61,3 +61,30 @@ for( let i = 0; i < items.length; i++ ) {
     circleContainer.innerHTML += circle;  // !!! QUESTO innerHTML NON FUNZIONA !!!
 
 }
+
+// Do la classe active a un elemento
+let activeImage = 0;
+const allImages = document.getElementsByName('single-img-container');
+const allCircle = document.getElementsByName('pallini');
+allImages[activeImage].classList.add('active');
+allCircle[activeImage].classList.add('active');
+
+// Al click dei tasti le imagini vanno avanti o indietro
+const nextChevron = document.querySelector('.chevron-down-icon');
+nextChevron.addEventListener('click', 
+    function() {
+
+        // Rimuovo active all'immagine corrente
+        allImages[activeImage].classList.remove('active')
+        allCircle[activeImage].classList.remove('active')
+
+        // Incremento activeImage di 1 solo se non è l'ultima
+        if( activeImage < items.length - 1 ) {
+
+        }
+        activeImage++;
+
+        // Aggiungo active all'immagine successiva
+        allImages[activeImage].classList.add('active')
+        allCircle[activeImage].classList.add('active')
+});
