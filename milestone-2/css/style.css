@@ -41,10 +41,15 @@ img{
 }
 
 .big-img-container .single-img-container{
+    position: relative;
     display: none;
 }
 
-.big-img-container .text-big-img{
+.single-img-container.active{
+    display: block;
+}
+
+.single-img-container .text-big-img{
     position: absolute;
     bottom: 0;
     right: 0;
@@ -66,7 +71,7 @@ img{
     list-style-type: none;
 }
 
-.circle-container ul li{
+.pallini{
     width: 5px;
     height: 5px;
     border-radius: 50%;
@@ -90,23 +95,18 @@ img{
     filter: brightness(0.4);
 }
 
+.thumb-img-container .single-img-container.active{
+    filter: brightness(1);
+    border: 3px solid rgb(167, 167, 167);
+}
+
 /* Single Img Container */
 .single-img-container{
     width: 100%;
     height: 100%;
 }
 
-/* Active */
-.single-img-container.active{
-    display: block;
-}
-
-.thumb-img-container .single-img-container.active{
-    filter: brightness(1);
-    border: 3px solid rgb(167, 167, 167);
-}
-
-.chevron-button{
+ .chevron-button{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
