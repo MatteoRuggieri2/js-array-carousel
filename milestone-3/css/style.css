@@ -119,6 +119,7 @@ img{
     background-color: rgb(167, 167, 167, 0.7);
     font-size: 22px;
     cursor: pointer;
+    z-index: 5;
 }
 
 .chevron-button.chevron-up-icon{
