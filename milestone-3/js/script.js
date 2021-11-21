@@ -1,8 +1,14 @@
-// MILESTONE 2
-// Adesso rimuoviamo tutto il markup statico e inseriamo le immagini e i testi delle 
-// immagini dinamicamente servendoci dell'array fornito e un semplice ciclo for che 
-// concatena un template literal. Al termine di questa fase ci ritroveremo con 
-// lo stesso slider, ma costruito dinamicamente attraverso JavaScript.
+// MILESTONE 3
+// Al click dell'utente sulle frecce verso l'alto o verso il basso, l'immagine attiva diventa visibile 
+// in formato grande a sinistra e nel suo angolo in basso a destra dovranno comparire relativi:
+//  - titolo e
+//  - testo.
+// Allo stesso tempo nelle miniature l'immagine attiva dovrà apparire in evidenza rispetto alle altre.
+
+// BONUS:
+// Aggiungere il ciclo infinito del carosello. Ovvero se la miniatura attiva è la prima e 
+// l'utente clicca la freccia verso l'alto, la miniatura che deve attivarsi sarà l'ultima e viceversa 
+// per l'ultima miniatura se l'utente clicca la freccia verso il basso.
 
 
 // ARRAY
@@ -32,9 +38,7 @@ const text = [
 
 // Seleziono il container delle img
 const imageContainer = document.querySelector('.big-img-container');
-const thumbsContainer = document.querySelector('.thumb-img-container')
-// console.log(imageContainer);
-const circleContainer = document.querySelector('.lista-dei-pallini');
+const thumbsContainer = document.querySelector('.thumb-img-container');
 
 for( let i = 0; i < items.length; i++ ) {
     const thisImg = items[i];
@@ -44,7 +48,7 @@ for( let i = 0; i < items.length; i++ ) {
 
     // Inserisco le immagini e il loro testo
     const newImage = `
-    <div class="single-img-container">
+    <div class="single-big-img">
         <img src="${thisImg}" alt="${thisTitle}">
 
         <div class="text-big-img">
@@ -58,31 +62,21 @@ for( let i = 0; i < items.length; i++ ) {
 
     // popolate thumbnails a destra
     const thumbs = `
-    <div class="single-img-container">
+    <div class="single-thumb-img">
         <img src="${thisImg}" alt="${thisTitle}">
     </div>
     `;
 
     thumbsContainer.innerHTML += thumbs;
 
-    // Inserisco il contenitore di pallini
-    const circle = `
-    <li class="pallini"></li>
-    `;
-
-    circleContainer.innerHTML += circle;  // !!! QUESTO innerHTML NON FUNZIONA !!!
-
-
 }
 
 // Do la classe active a un elemento
 let activeImage = 0;
-const allImages = document.getElementsByName('single-img-container');
-const allThumb = document.getElementsByName('.thumb-img-container .single-img-container');
-const allCircle = document.getElementsByName('pallini');
-allImages[activeImage].classList.add('active');  // qua mi da errore: Uncaught TypeError: Cannot read properties of undefined (reading 'classList') at script.js:81
+const allImages = document.getElementsByClassName('single-big-img');
+const allThumb = document.getElementsByClassName('single-thumb-img');
+allImages[activeImage].classList.add('active');
 allThumb[activeImage].classList.add('active');
-allCircle[activeImage].classList.add('active');
 
 // Al click del tasto sotto le imagini vanno avanti
 const nextChevron = document.querySelector('.chevron-down-icon');
@@ -91,7 +85,6 @@ nextChevron.addEventListener('click', function() {
     // Rimuovo active all'immagine corrente
     allImages[activeImage].classList.remove('active');
     allThumb[activeImage].classList.remove('active');
-    allCircle[activeImage].classList.remove('active');
 
     // Incremento activeImage di 1 solo se non è l'ultima
     if( activeImage < items.length - 1 ) {
@@ -103,7 +96,6 @@ nextChevron.addEventListener('click', function() {
     // Aggiungo active all'immagine successiva
     allImages[activeImage].classList.add('active');
     allThumb[activeImage].classList.add('active');
-    allCircle[activeImage].classList.add('active');
 });
 
 // Al click del tasto sopra le imagini vanno indietro
@@ -111,9 +103,8 @@ const backChevron = document.querySelector('.chevron-up-icon');
 backChevron.addEventListener('click', function() {
 
     // Rimuovo active all'immagine corrente
-    allImages[activeImage].classList.remove('active')
-    allThumb[activeImage].classList.remove('active')
-    allCircle[activeImage].classList.remove('active');
+    allImages[activeImage].classList.remove('active');
+    allThumb[activeImage].classList.remove('active');
 
     // Decremento activeImage di 1 solo se non è la prima
     if( activeImage > 0 ) {
@@ -123,7 +114,6 @@ backChevron.addEventListener('click', function() {
     }
         
     // Aggiungo active all'immagine successiva
-    allImages[activeImage].classList.add('active')
-    allThumb[activeImage].classList.add('active')
-    allCircle[activeImage].classList.add('active');
+    allImages[activeImage].classList.add('active');
+    allThumb[activeImage].classList.add('active');
 });
